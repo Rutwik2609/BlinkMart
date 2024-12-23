@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 
 import authRoutes  from "./routes/auth.route.js"; //When importing local packages or files you need .js extension
 import { connectDB } from "./lib/db.js";
+import productRoutes from "./routes/product.route.js";
 
 
 dotenv.config();
@@ -21,7 +22,8 @@ app.use(express.json());//Built into Express, this middleware parses incoming JS
 app.use(cookieParser());//Extracts cookies from the Cookie header and makes them accessible via req.cookies as an object.
 
 
-app.use("/api/auth",authRoutes)
+app.use("/api/auth",authRoutes);
+app.use("/api/products",productRoutes)
 
 app.listen(PORT, () => {
   console.log(`Server running on port http://localhost:${PORT}`);

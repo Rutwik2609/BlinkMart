@@ -2,6 +2,16 @@ import { redis } from "../lib/redis.js";
 import User from "../models/user.model.js";
 import jwt from "jsonwebtoken";
 
+/**
+ * Generates an access token and a refresh token for the given user ID.
+ *
+ * @param {string} userID - The ID of the user to generate tokens for.
+ *
+ * @returns {Object} An object containing both the access token and the refresh token. The access
+ * token is a JWT that can be used to authenticate with the server. The refresh token is also a JWT
+ * that can be used to get a new access token when the current one expires.
+ */
+
 const generateToken = (userID) => {
   const accessToken = jwt.sign({ userID }, process.env.JWT_ACCESS_SECRET, {
     expiresIn: "15m",
